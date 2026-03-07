@@ -44,6 +44,47 @@ a:hover {
   color: var(--accent-hover);
 }
 
+/* ── Focus Styles ── */
+a:focus-visible,
+button:focus-visible,
+.contact-link:focus-visible,
+.project-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ── Skip Link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 4px 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  z-index: 200;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: var(--bg);
+}
+
+/* ── Fade-in Animation ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Animated Background Grid ── */
 body::before {
   content: '';
@@ -84,6 +125,7 @@ nav {
   top: 0;
   border-bottom: 1px solid var(--border);
   z-index: 100;
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   background: rgba(13, 17, 23, 0.85);
 }
@@ -215,6 +257,11 @@ nav .nav-links a:hover {
 }
 
 /* ── Tech Banner ── */
+.tech-gallery {
+  padding: 0 0 1rem;
+  border: none;
+}
+
 .tech-banner {
   display: flex;
   gap: 1.5rem;
@@ -271,6 +318,10 @@ nav .nav-links a:hover {
   margin-bottom: 1.5rem;
 }
 
+.terminal-margin {
+  margin-top: 2.5rem;
+}
+
 .terminal-header {
   display: flex;
   align-items: center;
@@ -314,7 +365,7 @@ nav .nav-links a:hover {
 }
 
 .terminal-body .comment {
-  color: #484f58;
+  color: var(--border-bright);
 }
 
 .terminal-body .output {
@@ -438,6 +489,7 @@ nav .nav-links a:hover {
   font-weight: 500;
   color: var(--text);
   transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .contact-link:hover {
@@ -464,29 +516,14 @@ footer {
   font-family: var(--font-mono);
 }
 
-/* ── Code decoration ── */
-.code-decoration {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: #30363d;
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-  white-space: pre;
-  line-height: 1.5;
-}
-
-.code-decoration.left {
-  left: -60px;
-  top: 2rem;
-}
-
-.code-decoration.right {
-  right: -60px;
-  top: 2rem;
-}
-
 /* ── Responsive ── */
+@media (max-width: 900px) {
+  .tech-banner-item {
+    width: 240px;
+    height: 140px;
+  }
+}
+
 @media (max-width: 600px) {
   .hero-content {
     flex-direction: column;
@@ -517,12 +554,29 @@ footer {
     flex-direction: column;
   }
 
-  .code-decoration {
-    display: none;
-  }
-
   .tech-banner-item {
     width: 240px;
     height: 130px;
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .tech-banner-item img {
+    transition: none;
+  }
+
+  a {
+    transition: none;
   }
 }
