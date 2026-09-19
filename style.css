@@ -437,6 +437,27 @@ nav .nav-links a:hover {
   border-radius: 4px;
 }
 
+.project-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.project-card-media {
+  cursor: default;
+}
+
+.project-video {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  margin-bottom: 0.75rem;
+  background: #000;
+}
+
 /* ── Interests ── */
 .interests-content {
   color: var(--text-muted);
